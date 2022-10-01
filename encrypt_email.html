@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<body>
+
+<h1>Encrypt Email And Phone</h1>
+
+<p>Scrapers will not be able to harvest your personal data. Wait 2.1 seconds before decrypting. Probably scrapers won't wait that long before reading the source code.</p>
+
+<p>View source code (Ctrl+U) for the magic.</p>
+    
+<ul>
+    <li><a href=# target="_blank" id="email">Mail</a></li>
+    <li><a href=# target="_blank" id="whatsapp">WhatsApp</a></li>
+</ul>    
+
+<script src="encrypt_email.js"></script>
+<script>
+    // Example usage
+    function sleep(ms) {
+       return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    sleep(2100).then(() => {
+        // Result of encrypt("example@example.com")
+        let encrEmail = "fybnqmfAfybnqmf/dpn";  
+        document.getElementById("email").href = "mailto:" + decrypt(encrEmail);
+
+        // Result of encrypt("31612345678")
+        let encrPhone = "42723456789";
+        document.getElementById("whatsapp").href = "https://wa.me/" + decrypt(encrPhone);
+    })
+</script>
+
+</body>
+</html>
