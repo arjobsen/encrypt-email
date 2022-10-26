@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<body>
+
+<h1>Encrypt Your Email Address And Phone Number</h1>
+
+<p>Encrypt your personal data so it won't be directly readable from the HTML source code. Scrapers will not be able to harvest your personal data.</p>
+
+<h2>Usage</h2>
+<p>Let's say your email address is example@example.com. First encrypt your email address using <code>encrypt("example@example.com")</code>. You can run this JavaScript function in the browser while having this page opened. Press F12 to open Developers Tools, go to the Console and enter <code>encrypt("example@example.com")</code>. This returns <code>fybnqmfAfybnqmf/dpn</code>. The encryption algorithm is easy: for each letter, return the next letter in the alphabet. But it will be enough to shake off scrapers searching for email addresses.</p>
+
+<p>Include <code>&lt;script src="encrypt-email.js"&gt;&lt;/script&gt;</code> in your website. And put a placeholder anchor with <code>id="email"</code> as such <code>&lt;a href=# id="email"&gt;Mail me!&lt;/a&gt;</code>. When the page has loaded, call the JavaScript function to decrypt the string you've acquired before: <code>&lt;script&gt;document.getElementById("email").href = "mailto:" + decrypt("fybnqmfAfybnqmf/dpn");&lt;script&gt;</code>. You could wait a bit before decrypting, so you'll even mislead crawlers and scrapers which run JavaScript before extracting the source code!</p>
+
+<h2>Demo</h2>
+<ul>
+    <li><a href=# id="email">mailto:fybnqmfAfybnqmf/dpn</a></li>
+    <li><a href=# id="whatsapp">https://wa.me/42723456789</a></li>
+</ul>
+    
+<input type="button" value="Decrypt" onclick="decryptDivs();"/>
+
+<h2>Example with wait function</h2>
+<code>
+function sleep(ms) {
+   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+ sleep(2100).then(() => {
+    document.getElementById("email").href = "mailto:" + decrypt("fybnqmfAfybnqmf/dpn");
+    document.getElementById("whatsapp").href = "https://wa.me/" + decrypt("42723456789");
+})
+</code>
+
+<script src="encrypt-email.js"></script>
+<script>
+    // Example usage
+    function sleep(ms) {
+       return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    function decryptDivs() {
+         // Result of encrypt("example@example.com")
+        let encrEmail = "fybnqmfAfybnqmf/dpn";  
+        document.getElementById("email").href = "mailto:" + decrypt(encrEmail);
+        document.getElementById("email").innerHTML = "mailto:" + decrypt(encrEmail);
+
+        // Result of encrypt("31612345678")
+        let encrPhone = "42723456789";
+        document.getElementById("whatsapp").href = "https://wa.me/" + decrypt(encrPhone);
+        document.getElementById("whatsapp").innerHTML = "https://wa.me/" + decrypt(encrPhone);
+    }
+</script>
+
+</body>
+</html>

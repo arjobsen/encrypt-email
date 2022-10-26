@@ -1,4 +1,4 @@
-// encrypt_email.js
+// encrypt-email.js
 
 function stringToCharCodes(string) {
     // Returns a list of the character codes of a string
