@@ -6,20 +6,30 @@
 <script>
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    };
 
     sleep(2100).then(() => {
-        document.getElementById("email").href = "mailto:" + decrypt("fybnqmfAfybnqmf/dpn");
-        document.getElementById("whatsapp").href = "https://wa.me/" + decrypt("42723456789");
-    })
+        document.querySelectorAll(".decrypt-href").forEach((element) => {
+            // Use getAttribute to get the local href
+            element.href = decrypt(element.getAttribute('href'));
+        });
+    });
+
+    sleep(2100).then(() => {
+        document.querySelectorAll(".decrypt-text").forEach((element) => {
+            element.textContent = decrypt(element.textContent);
+        });
+    });
 </script>
 
 </head>
 <body>
 
-<p>Why won't you <a href=# id="email">drop me an email</a> or <a href=# id="whatsapp">send me a WhatsApp message</a>?</p>
+<p>Why won't you <a href="nbjmup;fybnqmfAfybnqmf/dpn" class="decrypt-href">drop me an email</a> or send me a WhatsApp message on <a href="iuuqt;00xb/nf023456789" class="decrypt-href decrypt-text">,42723456789</a>?</p>
 
-<p>The <code>href</code> attribute is decrypted after a few seconds. And the actual email address or phone number is not placed is the source code.</p>
+<p>Use the <code>decrypt-href</code> class to decrypt the <code>href</code>. Use the <code>decrypt-text</code> class to decrypt the <code>textContent</code>.</p>
+
+<p>Decryption takes place after a few seconds.</p>
 
 </body>
 </html>
